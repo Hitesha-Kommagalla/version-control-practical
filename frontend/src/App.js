@@ -13,6 +13,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('Checking token expiration...');
+
     const expirationTime = localStorage.getItem('expirationTime');
     if (expirationTime) {
       const currentTime = new Date().getTime();
