@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'NodeJS'   // Only if NodeJS tool is configured in Jenkins
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Cloning GitHub repository...'
+                git branch: 'main', url: 'https://github.com/Hitesha-Kommagalla/version-control-practical.git'
+            }
+        }
+
+        stage('Install Backend Dependencies') {
+            steps {
+                echo 'Installing backend dependencies...'
+                sh 'npm install'
+            }
+        }
+
+        stage('Install Frontend Dependencies') {
+            steps {
+                echo 'Installing frontend dependencies...'
+                sh 'cd frontend && npm install'
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                echo 'Building frontend...'
+                sh 'cd frontend && npm run build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests (if available)...'
+                // sh 'npm test'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check console output.'
+        }
+    }
+}
