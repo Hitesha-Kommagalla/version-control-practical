@@ -13,21 +13,21 @@ pipeline {
         stage('Install Backend Dependencies') {
             steps {
                 echo 'Installing backend dependencies...'
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Install Frontend Dependencies') {
             steps {
                 echo 'Installing frontend dependencies...'
-                sh 'cd frontend && npm install'
+                bat 'cd frontend && npm install'
             }
         }
 
         stage('Build Frontend') {
             steps {
                 echo 'Building frontend...'
-                sh 'cd frontend && npm run build'
+                bat 'cd frontend && npm run build'
             }
         }
 
