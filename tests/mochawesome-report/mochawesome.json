@@ -1,0 +1,223 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 3,
+    "pending": 0,
+    "failures": 2,
+    "start": "2026-03-04T17:53:39.045Z",
+    "end": "2026-03-04T17:54:58.154Z",
+    "duration": 79109,
+    "testsRegistered": 5,
+    "passPercent": 60,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f10a8688-ead4-4a14-bde1-3f4e6b798946",
+      "title": "",
+      "fullFile": "D:\\Git_Project\\version-control-practical\\tests\\allTests.js",
+      "file": "\\allTests.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+          "title": "Full E-Commerce Flow",
+          "fullFile": "D:\\Git_Project\\version-control-practical\\tests\\allTests.js",
+          "file": "\\allTests.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Full E-Commerce Flow\"",
+              "fullTitle": "Full E-Commerce Flow \"before all\" hook in \"Full E-Commerce Flow\"",
+              "timedOut": false,
+              "duration": 2353,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();\nawait driver.manage().window().maximize();\ndriver.manage().setTimeouts({ implicit: 5000 });\nawait driver.get('http://localhost:3000');",
+              "err": {},
+              "uuid": "f0d8058a-82a9-4c42-9c28-5ee686ff5e57",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Full E-Commerce Flow\"",
+              "fullTitle": "Full E-Commerce Flow \"after all\" hook in \"Full E-Commerce Flow\"",
+              "timedOut": false,
+              "duration": 5,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "a09d92c0-e7d9-4fc4-8a60-0e935ef821da",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Home Page - Check title",
+              "fullTitle": "Full E-Commerce Flow Home Page - Check title",
+              "timedOut": false,
+              "duration": 14,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const title = await driver.getTitle();\nassert.include(title, 'ProShop');\nconsole.log('Home page loaded ✔');",
+              "err": {},
+              "uuid": "8a4b57f7-2c3f-46bc-b1ee-4329c33fd114",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Search for iPhone",
+              "fullTitle": "Full E-Commerce Flow Search for iPhone",
+              "timedOut": false,
+              "duration": 6590,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const searchBox = await driver.findElement(By.name('q'));\nawait searchBox.sendKeys('iPhone');\nconst searchBtn = await driver.findElement(By.css('button[type=\"submit\"]'));\nawait searchBtn.click();\nawait driver.wait(until.elementLocated(\n    By.xpath(\"//h3[contains(text(),'iPhone 13 Pro 256GB Memory')]\")\n), 10000);\nconst productFound = await driver.findElement(\n    By.xpath(\"//h3[contains(text(),'iPhone 13 Pro 256GB Memory')]\")\n).isDisplayed();\nassert.isTrue(productFound, 'iPhone 13 Pro shows up in search results');\nconsole.log('Search test ✔');",
+              "err": {},
+              "uuid": "d68a0769-b856-4199-a733-7097bc425820",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Add iPhone to cart",
+              "fullTitle": "Full E-Commerce Flow Add iPhone to cart",
+              "timedOut": false,
+              "duration": 5057,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const addBtn = await driver.findElement(\n    By.xpath(\"//h3[contains(text(),'iPhone 13 Pro 256GB Memory')]/following::button[text()='Add to Cart']\")\n);\nawait addBtn.click();\nconst cartLink = await driver.findElement(By.id('cart-link'));\nawait cartLink.click();\nawait driver.wait(until.elementLocated(\n    By.xpath(\"//td[contains(text(),'iPhone 13 Pro 256GB Memory')]\")\n), 10000);\nconst inCart = await driver.findElement(\n    By.xpath(\"//td[contains(text(),'iPhone 13 Pro 256GB Memory')]\")\n).isDisplayed();\nassert.isTrue(inCart, 'iPhone successfully added to cart');\nconsole.log('Add to cart test ✔');",
+              "err": {
+                "message": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//h3[contains(text(),'iPhone 13 Pro 256GB Memory')]/following::button[text()='Add to Cart']\"}\n  (Session info: chrome=145.0.7632.117)",
+                "estack": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//h3[contains(text(),'iPhone 13 Pro 256GB Memory')]/following::button[text()='Add to Cart']\"}\n  (Session info: chrome=145.0.7632.117)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:526:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:458:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)\n    at async Context.<anonymous> (allTests.js:45:24)",
+                "diff": null
+              },
+              "uuid": "51fe2994-1023-4811-8e56-d024093430bf",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Navigate to checkout page",
+              "fullTitle": "Full E-Commerce Flow Navigate to checkout page",
+              "timedOut": false,
+              "duration": 5066,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const checkoutBtn = await driver.findElement(By.id('checkout-btn'));\nawait checkoutBtn.click();\nawait driver.wait(async () => (await driver.getCurrentUrl()).includes('shipping'), 10000);\nconst url = await driver.getCurrentUrl();\nassert.include(url, 'shipping', 'Navigated to checkout page');\nconsole.log('Checkout navigation test ✔');",
+              "err": {
+                "message": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"*[id=\"checkout-btn\"]\"}\n  (Session info: chrome=145.0.7632.117)",
+                "estack": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"*[id=\"checkout-btn\"]\"}\n  (Session info: chrome=145.0.7632.117)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:526:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:458:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)\n    at async Context.<anonymous> (allTests.js:66:29)",
+                "diff": null
+              },
+              "uuid": "486a52f8-0ff6-4bda-985a-b19006c14d16",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Keep browser open for demo",
+              "fullTitle": "Full E-Commerce Flow Keep browser open for demo",
+              "timedOut": false,
+              "duration": 60007,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('Browser will stay open for 60 seconds for visual demo...');\nawait new Promise(resolve => setTimeout(resolve, 60000)); // 60s wait",
+              "err": {},
+              "uuid": "be68412f-d992-4c93-8bd7-d3c09ab38978",
+              "parentUUID": "9359adba-f0f9-464e-b413-c09e29b51d8b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8a4b57f7-2c3f-46bc-b1ee-4329c33fd114",
+            "d68a0769-b856-4199-a733-7097bc425820",
+            "be68412f-d992-4c93-8bd7-d3c09ab38978"
+          ],
+          "failures": [
+            "51fe2994-1023-4811-8e56-d024093430bf",
+            "486a52f8-0ff6-4bda-985a-b19006c14d16"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 76734,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 300000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}

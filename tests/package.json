@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce-tests",
+  "version": "1.0.0",
+  "description": "Selenium tests for version-control-practical",
+  "scripts": {
+    "test": "mocha *.js --reporter mochawesome"
+  },
+  "devDependencies": {
+    "chai": "^4.3.8",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.4",
+    "selenium-webdriver": "^4.12.1"
+  }
+}
